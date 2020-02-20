@@ -1,0 +1,16 @@
+<div class="container">
+<button (click)="sendGetRequest()" >Send request to Pokemontcg!</button>
+<button (click)="getHardCodedCards()" >Get hard coded cards!</button>
+</div>
+
+<img [src]="imageUrl">
+    
+<div class="cards">
+    <div  *ngIf="cards === undefined">
+        <app-card-item id="card-item" *ngFor="let in of counter(20) ;let i = index">
+        </app-card-item>
+    </div>      
+
+    <app-card-item id="card-item" *ngFor="let card of cards" [card]="card">
+    </app-card-item>
+</div>
