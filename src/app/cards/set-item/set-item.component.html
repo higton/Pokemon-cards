@@ -1,0 +1,26 @@
+  <div (click)="this.goToCards()">
+    <div class="card-image">
+      <img [src]="set.logoUrl">
+    </div>
+    <div class="card-content">
+
+      <div class="media">
+        <div class="media-left">
+          <img [src]="set.symbolUrl">
+        </div>
+
+        <div class="media-content">
+          <p id="set-name">{{ set.name }}</p>
+          <p>Released {{ set.releaseDate }}</p>
+        </div>
+      </div>
+
+      <div class="content">
+        <ul>
+          <li *ngIf="set.standardLegal === true">Standard legal</li>
+          <li *ngIf="set.expandedLegal === true">Expanded Legal</li>
+        </ul>
+
+      </div>
+    </div>
+  </div>

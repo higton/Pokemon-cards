@@ -1,0 +1,2 @@
+<img *ngIf="card === undefined" src="../../assets/card-back.png">
+<img [class.selected]="card.id === selectedId" *ngIf="card !== undefined" [src]="card.imageUrl" (click)="this.goToDetails()">

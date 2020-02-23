@@ -1,0 +1,55 @@
+import { Component, OnInit } from '@angular/core';
+
+import { Observable, Subject } from 'rxjs';
+
+import{
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
+
+import { Card } from '../../models/Card';
+import { CardService } from '../../services/card.service';
+
+
+@Component({
+  selector: 'app-card-search',
+  templateUrl: './card-search.component.html',
+  styleUrls: ['./card-search.component.css']
+})
+export class CardSearchComponent implements OnInit {
+  cards$: Observable<any>;
+  cards: Card[];
+  val: string;
+
+  private searchTerms = new Subject<string>();
+
+  constructor(private cardService: CardService) { }
+
+  search(term: string): void {
+    this.searchTerms.next(term);
+  }
+
+  ngOnInit(): void{
+    this.searchTerm();
+    this.subscribe();
+  }
+
+  searchTerm(){
+    this.cards$ = this.searchTerms.pipe(
+      // wait 300ms after each keystroke before considering the term
+      debounceTime(300),
+
+      // ignore new term if sma eas previous term
+      distinctUntilChanged(),
+
+      // switch to new search observable each time the term changes
+      switchMap((term: string) => this.cardService.searchCards(term)),
+    );
+  }
+
+  subscribe(){
+    this.cards$.subscribe(data => {
+      this.cards = data.cards;
+      console.log(this.cards);
+    });
+  }
+}

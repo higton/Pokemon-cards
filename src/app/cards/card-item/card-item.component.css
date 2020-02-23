@@ -1,0 +1,18 @@
+img{
+  background: transparent url(/assets/card-back.png) no-repeat 50%;
+  background-size: 95%;
+  cursor: pointer;
+  text-align: center;
+  height: 344px;
+  width: 246px;
+  transition: all .3s;
+  transform: perspective(1px)
+}
+img.selected {
+  border: 5px solid red;
+}
+img:hover {
+  height: 380px;
+  width: 270px;
+  max-width: 100%;
+}

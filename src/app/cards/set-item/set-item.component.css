@@ -1,0 +1,38 @@
+div.card-image{
+  height: 140px;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+img{
+  height: auto;
+  width: auto;
+  max-height: 100%;
+  max-width: 100%;
+  text-align: center;
+}
+
+div.card-content{
+  padding: 1.5rem;
+}
+div.media{
+  display: flex;
+  text-align: left;
+  margin-bottom: .75rem;
+}
+div.media-left{
+  width: 53px;
+  height: 53px;
+  margin-right: 1rem;
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+p{
+  margin: 0;
+}
+#set-name{
+  font-size: 1.5rem;
+  font-weight: 500;
+}

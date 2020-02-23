@@ -1,0 +1,33 @@
+.container_sets{
+  margin: 3rem 3rem ;
+}
+div.sets{
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, calc(33.33% - 1rem));
+  align-items: center;
+  gap: 0.5cm 0.5cm;
+}
+app-set-item{
+  width: auto;
+  max-width: 405px;
+  height: auto;
+  align-items: center;
+  border: 0.5px solid lightgray;
+  padding: 1em;
+
+  transition-property: transform;
+  transition-duration: .3s;
+}
+
+app-set-item:hover{
+  transform: scale(1.1);
+}
+
+
+@media (min-width: 1000px){
+  div.sets{
+    width: 1335px;
+    max-width: 1350px;
+  }
+}

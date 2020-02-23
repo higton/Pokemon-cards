@@ -1,6 +1,7 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { CardService } from '../../services/card.service';
-import { Router} from '@angular/router';
 import { Card } from '../../models/Card';
 
 @Component({
@@ -10,16 +11,31 @@ import { Card } from '../../models/Card';
 })
 
 export class CardsComponent implements OnInit {
-  cards:Card[];
+  @Input() cards:Card[];
 
   imageUrl:string;
   
-  constructor(private cardService:CardService) { 
-  }
+  constructor(
+    private cardService:CardService,
+    private route: ActivatedRoute,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
+    this.getCodeToSubscribe();
   }
 
+  getCodeToSubscribe(){
+    let code = this.route.snapshot.paramMap.get('code');
+
+    if(code !== null){
+      this.cardService.getCardsByCode(code).subscribe(data => {
+        this.cards = data.cards;
+        console.log(data);
+      });
+    }
+  }
+/* 
   sendGetRequest(){
     this.cardService.data$.subscribe(data => {
       this.cards = data.cards;
@@ -30,7 +46,7 @@ export class CardsComponent implements OnInit {
   getHardCodedCards(){
     this.cards = this.cardService.getHardCodedCards();
   }
-
+ */
   counter(i: number) {
     return new Array(i);
   }

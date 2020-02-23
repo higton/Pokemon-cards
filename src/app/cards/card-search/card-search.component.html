@@ -1,0 +1,10 @@
+<div id="search-component">
+  <h4>Card Search</h4>
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
+
+  <div class="oki" *ngIf="cards !== undefined">
+    <app-cards [cards]="cards">
+    </app-cards>
+  </div>
+</div>

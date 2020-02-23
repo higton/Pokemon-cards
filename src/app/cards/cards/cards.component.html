@@ -1,0 +1,10 @@
+<img [src]="imageUrl">
+    
+<div  *ngIf="cards === undefined" class="cards">
+    <app-card-item id="card-item" *ngFor="let in of counter(20) ;let i = index">
+    </app-card-item>
+</div>
+<div class="cards">
+    <app-card-item id="card-item" *ngFor="let card of cards" [card]="card">
+    </app-card-item>
+</div>
