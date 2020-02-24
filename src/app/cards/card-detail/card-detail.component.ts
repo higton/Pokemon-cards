@@ -32,6 +32,12 @@ export class CardDetailComponent implements OnInit {
     });
   }
   goBackToCards(){
-    this.router.navigate(['/home', { id: this.card.id }]);
+    console.log(this.cardService.codeFromSet)
+    if(this.cardService.isCardSearched){
+      this.router.navigate(['/home']);
+    }
+    else{
+      this.router.navigate([`/sets/cards/${this.cardService.codeFromSet}`, { id: this.card.id }]);
+    }
   }
 }

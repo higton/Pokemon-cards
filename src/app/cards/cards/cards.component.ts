@@ -22,14 +22,22 @@ export class CardsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.getCodeToSubscribe();
+    this.cardService.codeFromSet = this.getCode();
+
+    let code = this.getCode()
+    this.subscribeCode(code)
   }
 
-  getCodeToSubscribe(){
+  getCode(){
     let code = this.route.snapshot.paramMap.get('code');
+    return code
+  }
 
+  subscribeCode(code:string){
     if(code !== null){
-      this.cardService.getCardsByCode(code).subscribe(data => {
+      this.cardService.getCardsByCode1(code)
+      
+      this.cardService.cardByCode$.subscribe(data => {
         this.cards = data.cards;
         console.log(data);
       });

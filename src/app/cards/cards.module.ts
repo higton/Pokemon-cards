@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { CardDetailComponent } from './card-detail/card-detail.component';
 import { CardsComponent } from './cards/cards.component';
@@ -14,6 +15,7 @@ import { SetItemComponent } from './set-item/set-item.component';
 
 @NgModule({
   imports: [
+    FormsModule,
     CommonModule,
     CardsRoutingModule
   ],

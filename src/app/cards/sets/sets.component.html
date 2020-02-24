@@ -1,12 +1,10 @@
-<p>sets works!</p>
+<div *ngIf="!isCardSearched()">
 
-<div class="container">
-  <button (click)="sendGetRequest()" >Send request to Pokemontcg!22</button>
-</div>
+  <div class="container_sets">
+    <div class="sets" *ngIf="sets !== undefined">
+      <app-set-item *ngFor="let set of sets.reverse(); let i=index" [set]="set">
+      </app-set-item>
+  </div>
+  </div>
 
-<div *ngIf="sets !== undefined" class="container_sets">
-<div class="sets">
-  <app-set-item *ngFor="let set of sets.reverse(); let i=index" [set]="set">
-  </app-set-item>
-</div>
 </div>

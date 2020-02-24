@@ -10,7 +10,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      anchorScrolling: 'enabled',
+    })
+    ],
+
   exports: [
     RouterModule,
     BrowserAnimationsModule,

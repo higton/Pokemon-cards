@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Output } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
 import{
@@ -8,6 +8,7 @@ import{
 
 import { Card } from '../../models/Card';
 import { CardService } from '../../services/card.service';
+import { EventEmitter } from 'protractor';
 
 
 @Component({
@@ -21,14 +22,29 @@ export class CardSearchComponent implements OnInit {
   val: string;
 
   private searchTerms = new Subject<string>();
+    
+  constructor(
+    private cardService: CardService,
+    private router: Router,
+    private route: ActivatedRoute,
+    ) { }
 
-  constructor(private cardService: CardService) { }
+  changeSearchedValue(term:string){
+    console.log(term)
+    if(term === ''){
+      this.cardService.changeSearchedValue(false);
+    }
+    else this.cardService.changeSearchedValue(true);
+  }
 
   search(term: string): void {
     this.searchTerms.next(term);
+
+    this.changeSearchedValue(term);
   }
 
   ngOnInit(): void{
+    this.cardService.changeSearchedValue(false);
     this.searchTerm();
     this.subscribe();
   }
@@ -42,14 +58,14 @@ export class CardSearchComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.cardService.searchCards(term)),
+      switchMap((term: string) =>
+      this.cardService.searchCards(term)),
     );
   }
 
   subscribe(){
     this.cards$.subscribe(data => {
       this.cards = data.cards;
-      console.log(this.cards);
     });
   }
 }

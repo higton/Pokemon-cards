@@ -1,7 +1,59 @@
 .header{
     background: black;
-    color: white;
-    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
     opacity: 0.8;
-    padding: 10px;
+    height: 60px;
+    font-weight: 400;
+    line-height: 1.4;
+    transition: color 200ms, background-color 200ms, border-color 200ms;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
+
+div.Navbar{
+    display: flex;
+    height: 60px;
+    line-height: 60px;
+    padding: 0px 40px;
+}
+
+div.Navbar-img{
+    width: 60px;
+}
+img{
+    height: 100%;
+    opacity: 0.8;
+    width: auto;
+}
+img:hover{
+    opacity: 1;
+}
+div.Navbar-items{
+    font-size: 17px;
+    display: flex;
+    height: 100%;
+    width: auto;
+    text-transform: uppercase;
+}
+
+#sets{
+    margin: 0 40px;
+}
+
+#sets:hover{
+    color: #fff;
+}
+
+#cards:hover{
+    color: #fff;
+}
+div.Navbar-accountUnauthenticated{
+    font-size: 15px;
+    position: absolute;
+    right: 40px;
+    width: auto;
+}
+
+#account:hover{
+    color: #fff;
+}
+

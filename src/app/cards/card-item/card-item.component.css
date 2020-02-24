@@ -8,7 +8,7 @@ img{
   transition: all .3s;
   transform: perspective(1px)
 }
-img.selected {
+#true {
   border: 5px solid red;
 }
 img:hover {

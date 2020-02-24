@@ -24,9 +24,16 @@ export class CardItemComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-      this.selectedId = this.route.snapshot.paramMap.get('id');
-    }
+    this.scrollToSelectedElement();
 
+    this.selectedId = this.route.snapshot.paramMap.get('id');
+    }
+  
+  scrollToSelectedElement(){
+    const element = document.querySelector("#true")
+    if (element) element.scrollIntoView({ block: 'center', inline: "nearest" })
+  }
+  
   goToDetails(){
     this.router.navigate(['/card', this.card.id]);
   }

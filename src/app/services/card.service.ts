@@ -14,9 +14,12 @@ import { Set } from '../models/Set';
 export class CardService {
   cardUrl:string = 'https://api.pokemontcg.io/v1/cards?setCode=sm12';
   cardLimit = '?_limit=5';
+  isCardSearched: boolean = false;
+  codeFromSet:string
 
   data$:Observable<any>;
   sets$:Observable<any>;
+  cardByCode$:Observable<any>;
 
   constructor(private http:HttpClient) {
     this.data$ = this.getCards().pipe(shareReplay(1))
@@ -28,6 +31,10 @@ export class CardService {
   ngOninit(){
   }
 
+  changeSearchedValue(value:boolean){
+    this.isCardSearched = value;
+  }
+
   getCards():Observable<Card[]>{
     return this.http.get<Card[]>(`${this.cardUrl}`)
   }
@@ -36,7 +43,10 @@ export class CardService {
     return this.http.get<Set[]>("https://api.pokemontcg.io/v1/sets");
   }
 
-  getCardsByCode(code:string):Observable<any>{
+  getCardsByCode1(code:string){
+    this.cardByCode$ = this.getCardsByCode2(code).pipe(shareReplay(1))
+  }
+  getCardsByCode2(code:string):Observable<any>{
     return this.http.get<any>(`https://api.pokemontcg.io/v1/cards?setCode=${code}`)
   }
 

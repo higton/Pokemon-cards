@@ -16,6 +16,7 @@ export class SetsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.sendGetRequest();
   }
 
   sendGetRequest(){
@@ -23,5 +24,9 @@ export class SetsComponent implements OnInit {
       this.sets = data.sets;
       console.log(data);
     });
+  }
+
+  isCardSearched(){
+    return this.cardService.isCardSearched;
   }
 }

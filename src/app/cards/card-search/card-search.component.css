@@ -1,4 +1,23 @@
 #search-box {
-  width: 200px;
+  width: 400px;
   height: 20px;
+}
+div.search{
+  margin: 20px 0;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  align-items: baseline;
+  justify-content: left;
+}
+
+h4{
+  margin: 0 20px;
+}
+h6{
+  font-weight: 200;
+  margin: 0 0 0 60px;
+}
+input{
+  margin: 0 20px;
 }

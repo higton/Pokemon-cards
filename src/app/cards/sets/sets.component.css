@@ -6,7 +6,7 @@ div.sets{
   display: grid;
   grid-template-columns: repeat(auto-fill, calc(33.33% - 1rem));
   align-items: center;
-  gap: 0.5cm 0.5cm;
+  gap: 0.6cm 0.6cm;
 }
 app-set-item{
   width: auto;
