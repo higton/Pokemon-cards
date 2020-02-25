@@ -37,7 +37,7 @@ export class CardDetailComponent implements OnInit {
       this.router.navigate(['/home']);
     }
     else{
-      this.router.navigate([`/sets/cards/${this.cardService.codeFromSet}`, { id: this.card.id }]);
+      this.router.navigate([`home/sets/cards/${this.cardService.codeFromSet}`, { id: this.card.id }]);
     }
   }
 }

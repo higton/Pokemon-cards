@@ -5,12 +5,24 @@ import { CardDetailComponent } from './card-detail/card-detail.component';
 import { HomeComponent } from './home/home.component';
 import { CardsComponent } from './cards/cards.component';
 import { CardSearchComponent } from './card-search/card-search.component';
+import { SetsComponent } from './sets/sets.component';
 
 const cardsRoutes: Routes = [
   { path: 'search', component: CardSearchComponent },
-  { path: 'sets/cards/:code', component: CardsComponent,  data: { animation: 'card' }},
   { path: 'card/:id', component: CardDetailComponent, },
-  { path: 'home', component: HomeComponent, data: { animation: 'cards' } },
+  { path: 'home',
+    component: HomeComponent,
+   children: [
+     { path: 'sets', component: SetsComponent,
+       children: [
+        { path: 'cards/:code', component: CardsComponent,
+          children: [
+            { path: ':id', component: CardDetailComponent,}
+          ]
+         }
+       ]
+     }
+   ] },
 ];
 
 @NgModule({

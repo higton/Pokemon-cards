@@ -21,6 +21,6 @@ export class SetItemComponent implements OnInit {
   }
 
   goToCards(){
-    this.router.navigate(['/sets/cards', this.set.code]);
+    this.router.navigate(['home/sets/cards', this.set.code]);
   }
 }

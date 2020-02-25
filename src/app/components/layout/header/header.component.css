@@ -16,12 +16,17 @@ div.Navbar{
     padding: 0px 40px;
 }
 
+nav{
+    cursor: pointer;
+}
+
 div.Navbar-img{
     width: 60px;
 }
 img{
+    cursor: pointer;
     height: 100%;
-    opacity: 0.8;
+    opacity: 0.9;
     width: auto;
 }
 img:hover{

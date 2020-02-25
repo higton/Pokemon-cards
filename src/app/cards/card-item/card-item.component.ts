@@ -35,7 +35,7 @@ export class CardItemComponent implements OnInit {
   }
   
   goToDetails(){
-    this.router.navigate(['/card', this.card.id]);
+    this.router.navigate(['/home/sets/cards/card', this.card.id]);
   }
 
 }

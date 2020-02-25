@@ -1,6 +1,8 @@
 <div *ngIf="!isCardSearched()">
 
-  <div class="container_sets">
+  <router-outlet  #myOutlet="outlet"></router-outlet>
+
+  <div class="container_sets" *ngIf="!myOutlet.isActivated">
     <div class="sets" *ngIf="sets !== undefined">
       <app-set-item *ngFor="let set of sets.reverse(); let i=index" [set]="set">
       </app-set-item>
