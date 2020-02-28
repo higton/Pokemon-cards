@@ -20,7 +20,7 @@ export class SetsComponent implements OnInit {
   }
 
   sendGetRequest(){
-    this.cardService.sets$.subscribe(data => {
+    this.cardService.getSets().subscribe(data => {
       this.sets = data.sets;
       console.log(data);
     });

@@ -1,1 +1,7 @@
 <p>user works!</p>
+<nav>
+  <a routerLink="./" routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true}">Dashboard</a>
+  <a routerLink="./cards" routerLinkActive="active">Manage Cards</a>
+</nav>
+<router-outlet></router-outlet>

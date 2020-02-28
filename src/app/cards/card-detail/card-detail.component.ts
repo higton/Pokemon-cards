@@ -25,9 +25,7 @@ export class CardDetailComponent implements OnInit {
   getIdToSubscribe(){
     let id = this.route.snapshot.paramMap.get('id');
 
-    this.cardService.getCardById(id);
-
-    this.cardService.cardById$.subscribe(data => {
+    this.cardService.getCardById(id).subscribe(data => {
       this.card = data.card;
     });
   }
@@ -37,7 +35,8 @@ export class CardDetailComponent implements OnInit {
       this.router.navigate(['/home']);
     }
     else{
-      this.router.navigate([`home/sets/cards/${this.cardService.codeFromSet}`, { id: this.card.id }]);
-    }
+      console.log(this.cardService.pageId)
+      this.router.navigateByUrl(`sets/cards/${this.cardService.codeFromSet};id=${this.card.id}/page/${this.cardService.pageId}`);
+   }
   }
 }

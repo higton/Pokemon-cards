@@ -1,6 +1,6 @@
 
 div.cards{
-    margin: 0 0 0 20px;
+    margin: 0 0 0 10vw;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 270px));
     grid-auto-rows: minmax(336px, 375px);
@@ -14,5 +14,10 @@ div.container{
     justify-content: space-evenly;
     margin: 20px 0;
     z-index: -1;
-
 }
+
+@media (min-width: 1200px){
+    div.cards{
+        margin: 0 12vw 0 12vw;
+    }
+  }

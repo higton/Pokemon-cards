@@ -3,20 +3,20 @@
   height: 20px;
 }
 div.search{
-  margin: 20px 0;
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
   align-items: baseline;
   justify-content: left;
+  margin-top: 15vh;
 }
 
 h4{
   margin: 0 20px;
 }
 h6{
+  margin-left: 30px;
   font-weight: 200;
-  margin: 0 0 0 60px;
 }
 input{
   margin: 0 20px;

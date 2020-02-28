@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { shareReplay, catchError, tap  } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
-import { CARDS } from '../mock-cards';
 import { Card } from '../models/Card';
 import { Set } from '../models/Set';
 
@@ -12,23 +12,19 @@ import { Set } from '../models/Set';
 })
 
 export class CardService {
-  cardUrl:string = 'https://api.pokemontcg.io/v1/cards?setCode=sm12';
-  cardLimit = '?_limit=5';
+  cardUrl:string = 'https://api.pokemontcg.io/v1/cards?';
   isCardSearched: boolean = false;
   codeFromSet:string
+  pageId:number
 
   data$:Observable<any>;
   sets$:Observable<any>;
-  cardByCode$:Observable<any>;
 
   constructor(private http:HttpClient) {
-    this.data$ = this.getCards().pipe(shareReplay(1))
-    this.sets$ = this.getSets().pipe(shareReplay(1))
    }
 
-  cardById$:Observable<any>;
-
   ngOninit(){
+
   }
 
   changeSearchedValue(value:boolean){
@@ -39,27 +35,26 @@ export class CardService {
     return this.http.get<Card[]>(`${this.cardUrl}`)
   }
 
-  getSets(){
+  getSets():Observable<any>{
     return this.http.get<Set[]>("https://api.pokemontcg.io/v1/sets");
   }
 
-  getCardsByCode1(code:string){
-    this.cardByCode$ = this.getCardsByCode2(code).pipe(shareReplay(1))
+  getCardsById(pageId:number, code:string){
+    return this.http.get<any>(
+      `https://api.pokemontcg.io/v1/cards?setCode=${code}&page=${pageId}&pageSize=50`)
+      .pipe(shareReplay(1))
   }
-  getCardsByCode2(code:string):Observable<any>{
-    return this.http.get<any>(`https://api.pokemontcg.io/v1/cards?setCode=${code}`)
+  
+  getResponseCardsById(pageId:number, code:string){
+    return this.http.get<any>(
+      `https://api.pokemontcg.io/v1/cards?setCode=${code}&page=${pageId}&pageSize=50`, {observe: 'response'})
+      .pipe(shareReplay(1))
   }
-
-  getCardById(id:string){
-    this.cardById$ = this.getCardById2(id).pipe(shareReplay(1))
-  }
-
-  getCardById2(id:string):Observable<any>{
-    return this.http.get(`https://api.pokemontcg.io/v1/cards/${id}`);
-  }
-
-  getHardCodedCards(){
-    return CARDS;
+  
+  getCardById(id:string):Observable<any>{
+    return this.http.get(
+      `https://api.pokemontcg.io/v1/cards/${id}`)
+      .pipe(shareReplay(1))
   }
 
   searchCards(term: string): Observable<any>{
@@ -67,10 +62,6 @@ export class CardService {
       // if theres not a search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<any>(`https://api.pokemontcg.io/v1/cards?name=${term}`).pipe(
-      tap(x => x.length ?
-         console.log(`found cards matching "${term}"`) :
-         console.log(`no cards matching "${term}"`)),
-    );
+    return this.http.get<any>(`https://api.pokemontcg.io/v1/cards?name=${term}`)
   }
 }

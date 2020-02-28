@@ -26,16 +26,24 @@ export class CardItemComponent implements OnInit {
   ngOnInit(): void {
     this.scrollToSelectedElement();
 
-    this.selectedId = this.route.snapshot.paramMap.get('id');
-    }
+    this.selectedId = this.getId();
+    console.log(this.selectedId)
+  }
   
+  getId(){
+    let id:string;
+    this.route.parent.params.subscribe( (params) => {
+      id = params['id'];
+    });
+    return id;
+  }
   scrollToSelectedElement(){
     const element = document.querySelector("#true")
     if (element) element.scrollIntoView({ block: 'center', inline: "nearest" })
   }
   
   goToDetails(){
-    this.router.navigate(['/home/sets/cards/card', this.card.id]);
+    this.router.navigate(['/sets/cards/card', this.card.id]);
   }
 
 }

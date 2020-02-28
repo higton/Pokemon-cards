@@ -54,7 +54,7 @@ export class CardSearchComponent implements OnInit {
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
 
-      // ignore new term if sma eas previous term
+      // ignore new term if is the same as the previous term
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes

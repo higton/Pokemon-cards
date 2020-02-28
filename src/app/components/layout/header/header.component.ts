@@ -21,6 +21,6 @@ export class HeaderComponent implements OnInit {
   }
 
   goToSetsPage(){
-    this.router.navigate(['/home/sets']);
+    this.router.navigate(['/sets']);
   }
 }

@@ -14,48 +14,78 @@ export class CardsComponent implements OnInit {
   @Input() cards:Card[];
 
   imageUrl:string;
-  
+  pageId:number; 
+  totalNumberOfCards:number;
+  numberOfPages:number;
+
   constructor(
     private cardService:CardService,
     private route: ActivatedRoute,
     private router: Router,
-    ) { }
+    ) {}
 
   ngOnInit(): void {
+    this.pageId = +this.getPageId();
+    this.cardService.pageId = this.pageId
+
     this.cardService.codeFromSet = this.getCode();
 
-    let code = this.getCode()
-    this.subscribeCode(code)
+    this.subscribeToPageId(this.pageId, this.cardService.codeFromSet);
   }
 
   getCode(){
-    let code = this.route.snapshot.paramMap.get('code');
+    let code:string
+
+    this.route.parent.params.subscribe( (params) => {
+      code = params['code'];
+    });
     return code
   }
 
-  subscribeCode(code:string){
-    if(code !== null){
-      this.cardService.getCardsByCode1(code)
-      
-      this.cardService.cardByCode$.subscribe(data => {
+  getPageId(){
+    let id = this.route.snapshot.paramMap.get('id');
+    return id
+  }
+
+  subscribeToPageId(pageId:number, code:string){
+    if(pageId !== null && code !== null){      
+      this.cardService.getResponseCardsById(pageId, code).subscribe(data => {
+        this.totalNumberOfCards = +data.headers.get('Total-Count')
+        this.numberOfPages = this.getNumberOfPages(50, this.totalNumberOfCards)
+        console.log(data.headers.get('Total-Count'))
+      });
+      this.cardService.getCardsById(pageId, code).subscribe(data => {
         this.cards = data.cards;
-        console.log(data);
+        console.log(this.cards);
       });
     }
   }
-/* 
-  sendGetRequest(){
-    this.cardService.data$.subscribe(data => {
-      this.cards = data.cards;
-      console.log(this.cards);
-    });
+
+  nextPage(){
+    this.pageId = this.pageId + 1;
+    this.subscribeToPageId(this.pageId, 'sm12');
+    this.navigateToPage(this.pageId);
   }
 
-  getHardCodedCards(){
-    this.cards = this.cardService.getHardCodedCards();
+  previousPage(){
+    this.pageId = this.pageId - 1;
+    this.subscribeToPageId(this.pageId, 'sm12');
+    this.navigateToPage(this.pageId);
   }
- */
+
+  navigateToPage(pageId:number){
+    console.log('navigate to ' + pageId)
+    this.cardService.pageId = pageId
+    this.subscribeToPageId(pageId, this.cardService.codeFromSet);
+    this.router.navigate([`/sets/cards/${this.cardService.codeFromSet}/page`, pageId]);
+  }
+
   counter(i: number) {
     return new Array(i);
+  }
+
+  //PURE
+  getNumberOfPages(cardsInOnePage:number, totalNumberOfCardsRequested:number){
+    return +(totalNumberOfCardsRequested/cardsInOnePage).toPrecision(1) + 1
   }
 }

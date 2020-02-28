@@ -1,5 +1,5 @@
 .container_sets{
-  margin: 3rem 3rem ;
+  margin: 3rem 3rem;
 }
 div.sets{
   margin: auto;
@@ -10,7 +10,7 @@ div.sets{
 }
 app-set-item{
   width: auto;
-  max-width: 405px;
+  max-width: 420px;
   height: auto;
   align-items: center;
   border: 0.5px solid lightgray;
