@@ -25,12 +25,14 @@ export class CardsComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.pageId = +this.getPageId();
-    this.cardService.pageId = this.pageId
+    if(!this.cardService.isCardSearched){
+      this.pageId = +this.getPageId();
+      this.cardService.pageId = this.pageId
 
-    this.cardService.codeFromSet = this.getCode();
+      this.cardService.codeFromSet = this.getCode();
 
-    this.subscribeToPageId(this.pageId, this.cardService.codeFromSet);
+      this.subscribeToPageId(this.pageId, this.cardService.codeFromSet);
+    }
   }
 
   getCode(){
@@ -42,17 +44,17 @@ export class CardsComponent implements OnInit {
     return code
   }
 
-  getPageId(){
-    let id = this.route.snapshot.paramMap.get('id');
+  getPageId():number{
+    let id = +this.route.snapshot.paramMap.get('id');
     return id
   }
 
   subscribeToPageId(pageId:number, code:string){
+    console.log('passed here')
     if(pageId !== null && code !== null){      
       this.cardService.getResponseCardsById(pageId, code).subscribe(data => {
         this.totalNumberOfCards = +data.headers.get('Total-Count')
         this.numberOfPages = this.getNumberOfPages(50, this.totalNumberOfCards)
-        console.log(data.headers.get('Total-Count'))
       });
       this.cardService.getCardsById(pageId, code).subscribe(data => {
         this.cards = data.cards;
@@ -63,13 +65,13 @@ export class CardsComponent implements OnInit {
 
   nextPage(){
     this.pageId = this.pageId + 1;
-    this.subscribeToPageId(this.pageId, 'sm12');
+    this.subscribeToPageId(this.pageId, this.cardService.codeFromSet);
     this.navigateToPage(this.pageId);
   }
 
   previousPage(){
     this.pageId = this.pageId - 1;
-    this.subscribeToPageId(this.pageId, 'sm12');
+    this.subscribeToPageId(this.pageId, this.cardService.codeFromSet);
     this.navigateToPage(this.pageId);
   }
 
@@ -82,6 +84,10 @@ export class CardsComponent implements OnInit {
 
   counter(i: number) {
     return new Array(i);
+  }
+
+  returnNumberOfPages(){
+    return this.numberOfPages;
   }
 
   //PURE

@@ -16,7 +16,8 @@ export class CardService {
   isCardSearched: boolean = false;
   codeFromSet:string
   pageId:number
-
+  numberOfPages:number
+  
   data$:Observable<any>;
   sets$:Observable<any>;
 

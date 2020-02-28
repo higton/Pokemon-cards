@@ -1,8 +1,8 @@
 <router-outlet  #myOutlet="outlet"></router-outlet>
 <div *ngIf="!myOutlet.isActivated">
-    <button (click)="previousPage()">Previous page!</button>
-    <button (click)="nextPage()">Next page!</button>
-
+  
+    <app-pagination *ngIf="cards !== undefined"></app-pagination>
+    
     <img [src]="imageUrl">
 
     <div  *ngIf="cards === undefined" class="cards">
@@ -14,11 +14,5 @@
         </app-card-item>
     </div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item" *ngFor="let in of counter(numberOfPages) ;let i = index"><a class="page-link" (click)="navigateToPage(i+1)">{{ i + 1 }}</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </nav>
+    <app-pagination *ngIf="cards !== undefined"></app-pagination>
 </div>

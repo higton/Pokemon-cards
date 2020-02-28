@@ -11,6 +11,7 @@ import { CardsRoutingModule } from './cards-routing.module';
 import { CardSearchComponent } from './card-search/card-search.component';
 import { SetsComponent } from './sets/sets.component';
 import { SetItemComponent } from './set-item/set-item.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SetItemComponent } from './set-item/set-item.component';
     CardItemComponent,
     CardSearchComponent,
     SetsComponent,
-    SetItemComponent
+    SetItemComponent,
+    PaginationComponent
   ],
   imports: [
     FormsModule,

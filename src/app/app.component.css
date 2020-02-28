@@ -1,4 +1,5 @@
 div{
-  max-height: 100vh;
+  max-height: calc(100vh-6rem);
   max-width: 100vw;
+  margin-top: 6rem;
 }
