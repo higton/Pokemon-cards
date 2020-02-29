@@ -14,6 +14,7 @@ import { CardsModule } from './cards/cards.module';
 import { HomeComponent } from './components/home/home.component';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { FooterComponent } from './components/layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AuthModule } from './auth/auth.module';
     HeaderComponent,
     PageNotFoundComponent,
     HomeComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserAnimationsModule,

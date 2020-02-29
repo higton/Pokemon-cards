@@ -23,4 +23,8 @@ export class HeaderComponent implements OnInit {
   goToSetsPage(){
     this.router.navigate(['/sets']);
   }
+
+  goToAllCardsPage(){
+    this.router.navigate(['/cards/page/1']);
+  }
 }

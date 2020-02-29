@@ -25,6 +25,7 @@ export class CardsComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    this.pageId = this.getPageId();
     if(!this.cardService.isCardSearched){
       this.pageId = +this.getPageId();
       this.cardService.pageId = this.pageId
@@ -50,36 +51,37 @@ export class CardsComponent implements OnInit {
   }
 
   subscribeToPageId(pageId:number, code:string){
-    console.log('passed here')
-    if(pageId !== null && code !== null){      
+    console.log('code ' + code + ' number ' + pageId)
+    if(pageId !== undefined && code !== undefined){      
       this.cardService.getResponseCardsById(pageId, code).subscribe(data => {
         this.totalNumberOfCards = +data.headers.get('Total-Count')
         this.numberOfPages = this.getNumberOfPages(50, this.totalNumberOfCards)
+        console.log('okok' + this.numberOfPages)
       });
       this.cardService.getCardsById(pageId, code).subscribe(data => {
         this.cards = data.cards;
         console.log(this.cards);
       });
     }
-  }
+    // REFACTOR THISS!!!
+    // IF the function was called by all cards component
+    if(code === undefined && pageId !== null){
+      console.log('outpost')
 
-  nextPage(){
-    this.pageId = this.pageId + 1;
-    this.subscribeToPageId(this.pageId, this.cardService.codeFromSet);
-    this.navigateToPage(this.pageId);
-  }
+      this.numberOfPages = 122
 
-  previousPage(){
-    this.pageId = this.pageId - 1;
-    this.subscribeToPageId(this.pageId, this.cardService.codeFromSet);
-    this.navigateToPage(this.pageId);
+      this.cardService.getAllCards(pageId).subscribe(data => {
+        this.cards = data.cards;
+        console.log(this.cards);
+      });
+    }
   }
 
   navigateToPage(pageId:number){
     console.log('navigate to ' + pageId)
     this.cardService.pageId = pageId
     this.subscribeToPageId(pageId, this.cardService.codeFromSet);
-    this.router.navigate([`/sets/cards/${this.cardService.codeFromSet}/page`, pageId]);
+    this.router.navigate([`../`, pageId], {relativeTo: this.route});
   }
 
   counter(i: number) {

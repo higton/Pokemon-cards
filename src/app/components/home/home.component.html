@@ -1,7 +1,8 @@
-<div class="background-image"></div>
-
-<div class="home-container">
+<div class="container-home">
   <div class="card-search">
     <app-card-search></app-card-search>
+  </div>
+  <div class="container-image">
+    <div class="background-image" *ngIf="!cardService.isCardSearched"></div>
   </div>
 </div>

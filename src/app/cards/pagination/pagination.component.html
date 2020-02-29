@@ -1,13 +1,16 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item">
-      <a class="page-link" *ngIf="1 !== cards.getPageId()" (click)="cards.previousPage()">Previous</a>
+      <a class="page-link" *ngIf="1 !== cards.getPageId()" (click)="cards.navigateToPage(cards.getPageId() - 1)">Previous</a>
     </li>
     <li class="page-item" *ngFor="let in of counter(cards.numberOfPages) ;let i = index">
-      <a class="page-link" (click)="cards.navigateToPage(i+1)">{{ i + 1 }}</a>
+      <a class="page-link" *ngIf="(cards.getPageId() + i ) <= cards.numberOfPages && i < 7" (click)="cards.navigateToPage(cards.getPageId() + i)">{{  cards.getPageId() + i }}</a>
+    </li>
+    <li class="page-item" >
+      <a class="page-link" *ngIf="(cards.getPageId() + 7 ) <= cards.numberOfPages" (click)="cards.navigateToPage(cards.numberOfPages)">...{{  cards.numberOfPages }}</a>
     </li>
     <li class="page-item">
-      <a class="page-link" (click)="cards.previousPage()">Next</a></li>
+      <a class="page-link" (click)="cards.navigateToPage(cards.getPageId() + 1)">Next</a></li>
   </ul>
 
 </nav>

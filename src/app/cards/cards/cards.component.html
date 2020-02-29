@@ -1,8 +1,8 @@
 <router-outlet  #myOutlet="outlet"></router-outlet>
 <div *ngIf="!myOutlet.isActivated">
-  
+        
     <app-pagination *ngIf="cards !== undefined"></app-pagination>
-    
+
     <img [src]="imageUrl">
 
     <div  *ngIf="cards === undefined" class="cards">

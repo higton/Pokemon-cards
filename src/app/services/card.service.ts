@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { shareReplay, catchError, tap  } from 'rxjs/operators';
-import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 import { Card } from '../models/Card';
 import { Set } from '../models/Set';
@@ -12,7 +12,7 @@ import { Set } from '../models/Set';
 })
 
 export class CardService {
-  cardUrl:string = 'https://api.pokemontcg.io/v1/cards?';
+  cardUrl:string = 'https://api.pokemontcg.io/v1/';
   isCardSearched: boolean = false;
   codeFromSet:string
   pageId:number
@@ -21,8 +21,11 @@ export class CardService {
   data$:Observable<any>;
   sets$:Observable<any>;
 
-  constructor(private http:HttpClient) {
-   }
+  constructor(
+    private http:HttpClient,
+    private route: ActivatedRoute,
+    ) {
+}
 
   ngOninit(){
 
@@ -32,8 +35,14 @@ export class CardService {
     this.isCardSearched = value;
   }
 
-  getCards():Observable<Card[]>{
-    return this.http.get<Card[]>(`${this.cardUrl}`)
+  getAllCards(pageId:number):Observable<any>{
+    return this.http.get<any>(`${this.cardUrl}cards?page=${pageId}`)
+  }
+
+  getResponseAllCards(pageId:number){
+    return this.http.get<any>(
+      `${this.cardUrl}cards`, {observe: 'response'})
+      .pipe(shareReplay(1))
   }
 
   getSets():Observable<any>{
@@ -64,5 +73,10 @@ export class CardService {
       return of([]);
     }
     return this.http.get<any>(`https://api.pokemontcg.io/v1/cards?name=${term}`)
+  }
+
+  getPageId():number{
+    let id = +this.route.snapshot.paramMap.get('id');
+    return id
   }
 }

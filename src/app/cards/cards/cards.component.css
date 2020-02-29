@@ -1,23 +1,13 @@
 
 div.cards{
-    margin: 0 0 2rem 10vw;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 270px));
     grid-auto-rows: minmax(336px, 375px);
-
-    align-items: center;
-    text-align: center;
-    gap: 0px 0;
-}
-div.container{
-    display: flex;
-    justify-content: space-evenly;
-    margin: 1rem 0;
-    z-index: -1;
+    justify-content: center;
 }
 
 @media (min-width: 1200px){
     div.cards{
-        margin: 0 12vw 0 12vw;
+        margin: 0 12vw 3rem 12vw;
     }
   }

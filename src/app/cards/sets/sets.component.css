@@ -1,11 +1,13 @@
 .container_sets{
+  display: flex;
   margin: 3rem 3rem;
+  justify-content: center;
 }
 div.sets{
-  margin: auto;
+  flex-grow: 2;
   display: grid;
   grid-template-columns: repeat(auto-fill, calc(33.33% - 1rem));
-  align-items: center;
+  align-content: center;
   gap: 0.6cm 0.6cm;
 }
 app-set-item{

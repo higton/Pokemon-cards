@@ -5,9 +5,10 @@ import { CardDetailComponent } from './card-detail/card-detail.component';
 import { CardsComponent } from './cards/cards.component';
 import { CardSearchComponent } from './card-search/card-search.component';
 import { SetsComponent } from './sets/sets.component';
-import { AuthGuard } from '../auth/auth.guard';
+import { AllCardsComponent } from './all-cards/all-cards.component';
 
 const cardsRoutes: Routes = [
+  { path: 'cards/page/:id', component: AllCardsComponent },
   { path: 'search', component: CardSearchComponent },
   { path: 'card/:id', component: CardDetailComponent, },
   { path: '',

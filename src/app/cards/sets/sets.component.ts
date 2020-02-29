@@ -26,7 +26,4 @@ export class SetsComponent implements OnInit {
     });
   }
 
-  isCardSearched(){
-    return this.cardService.isCardSearched;
-  }
 }

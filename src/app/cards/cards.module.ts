@@ -12,6 +12,7 @@ import { CardSearchComponent } from './card-search/card-search.component';
 import { SetsComponent } from './sets/sets.component';
 import { SetItemComponent } from './set-item/set-item.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { AllCardsComponent } from './all-cards/all-cards.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     CardSearchComponent,
     SetsComponent,
     SetItemComponent,
-    PaginationComponent
+    PaginationComponent,
+    AllCardsComponent
   ],
   imports: [
     FormsModule,
