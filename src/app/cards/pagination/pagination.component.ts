@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardService } from '../../services/card.service';
 import { CardsComponent } from '../cards/cards.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -10,11 +11,13 @@ import { CardsComponent } from '../cards/cards.component';
 
 export class PaginationComponent implements OnInit {
   constructor(
-    private cardService:CardService,
+    public cardService:CardService,
     public cards:CardsComponent,
+    public route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    console.log(this.cardService.getId(this.route))
   }
 
   counter(i: number) {

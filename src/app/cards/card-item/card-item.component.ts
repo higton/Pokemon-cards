@@ -15,7 +15,7 @@ export class CardItemComponent implements OnInit {
   @Input() card: Card;
   cards$: Observable<Card[]>;
   
-  selectedId: string;
+  selectedCardId: string;
 
   constructor(
     private router: Router,
@@ -26,24 +26,25 @@ export class CardItemComponent implements OnInit {
   ngOnInit(): void {
     this.scrollToSelectedElement();
 
-    this.selectedId = this.getId();
-    console.log(this.selectedId)
+    this.selectedCardId = this.getCardId();
+    console.log(this.selectedCardId)
   }
   
-  getId(){
+  getCardId(){
     let id:string;
-    this.route.parent.params.subscribe( (params) => {
-      id = params['id'];
+    this.route.params.subscribe( (params) => {
+      id = params['card'];
     });
     return id;
   }
+  
   scrollToSelectedElement(){
     const element = document.querySelector("#true")
     if (element) element.scrollIntoView({ block: 'center', inline: "nearest" })
   }
   
   goToDetails(){
-    this.router.navigate(['/sets/cards/card', this.card.id]);
+    this.router.navigate(['./card/', this.card.id], {relativeTo: this.route});
   }
 
 }

@@ -25,9 +25,9 @@ export class CardsComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.pageId = this.getPageId();
+    this.pageId = +this.cardService.getPageId(this.route);
     if(!this.cardService.isCardSearched){
-      this.pageId = +this.getPageId();
+      this.pageId = +this.cardService.getPageId(this.route);
       this.cardService.pageId = this.pageId
 
       this.cardService.codeFromSet = this.getCode();
@@ -43,11 +43,6 @@ export class CardsComponent implements OnInit {
       code = params['code'];
     });
     return code
-  }
-
-  getPageId():number{
-    let id = +this.route.snapshot.paramMap.get('id');
-    return id
   }
 
   subscribeToPageId(pageId:number, code:string){

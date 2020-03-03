@@ -8,23 +8,25 @@ import { SetsComponent } from './sets/sets.component';
 import { AllCardsComponent } from './all-cards/all-cards.component';
 
 const cardsRoutes: Routes = [
-  { path: 'cards/page/:id', component: AllCardsComponent },
+  { path: 'cards/page/:id', component: AllCardsComponent,
+      children: [
+        { path: 'card/:id', component: CardDetailComponent},
+      ] 
+  },
   { path: 'search', component: CardSearchComponent },
   { path: 'card/:id', component: CardDetailComponent, },
-  { path: '',
-    component: CardSearchComponent,
-   children: [
-     { path: 'sets', component: SetsComponent,
+  { path: 'sets', component: SetsComponent,
        children: [
         { path: 'cards/:code', component: CardsComponent,
           children: [
-            { path: ':id', component: CardDetailComponent },
-            { path: 'page/:id', component: CardsComponent }
+            { path: 'page/:id', component: CardsComponent,
+              children: [
+                { path: 'card/:id', component: CardDetailComponent },
+              ] }
           ]
          }
        ]
-     }
-   ] },
+     },
 ];
 
 @NgModule({

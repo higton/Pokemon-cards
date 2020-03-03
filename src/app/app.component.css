@@ -8,5 +8,5 @@ div{
 .container-router{
   margin-top: 6rem;
   /* min-height so the footer dont get on the way */
-  min-height: 64vh;
+  min-height: 70vh;
 }

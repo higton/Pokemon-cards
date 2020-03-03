@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { shareReplay, catchError, tap  } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
 
 import { Card } from '../models/Card';
 import { Set } from '../models/Set';
@@ -23,12 +22,21 @@ export class CardService {
 
   constructor(
     private http:HttpClient,
-    private route: ActivatedRoute,
     ) {
 }
 
   ngOninit(){
 
+  }
+
+  getPageId(route:any):number{
+    let id = +route.snapshot.paramMap.get('id');
+    return id
+  }
+
+  getId(route:any):string{
+    let id = route.snapshot.paramMap.get('id');
+    return id
   }
 
   changeSearchedValue(value:boolean){
@@ -73,10 +81,5 @@ export class CardService {
       return of([]);
     }
     return this.http.get<any>(`https://api.pokemontcg.io/v1/cards?name=${term}`)
-  }
-
-  getPageId():number{
-    let id = +this.route.snapshot.paramMap.get('id');
-    return id
   }
 }

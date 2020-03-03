@@ -36,7 +36,8 @@ export class CardDetailComponent implements OnInit {
     }
     else{
       console.log(this.cardService.pageId)
-      this.router.navigateByUrl(`sets/cards/${this.cardService.codeFromSet};id=${this.card.id}/page/${this.cardService.pageId}`);
+      this.router.navigate([`../../`, {card: this.card.id}], {relativeTo: this.route});
+
    }
   }
 }
