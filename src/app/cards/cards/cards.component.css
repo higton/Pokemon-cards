@@ -4,6 +4,8 @@ div.cards{
     grid-template-columns: repeat(auto-fill, minmax(250px, 270px));
     grid-auto-rows: minmax(336px, 375px);
     justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 @media (min-width: 1200px){

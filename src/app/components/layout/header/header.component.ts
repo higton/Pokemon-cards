@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CardSearchComponent } from '../../../cards/cards.module';
 
 @Component({
   selector: 'app-header',

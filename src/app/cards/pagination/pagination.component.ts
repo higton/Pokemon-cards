@@ -17,7 +17,8 @@ export class PaginationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.cardService.getId(this.route))
+    console.log(this.cards.numberOfPages)
+    console.log(this.cardService.getPageId(this.route))
   }
 
   counter(i: number) {

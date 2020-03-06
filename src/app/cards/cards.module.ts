@@ -34,3 +34,5 @@ import { AllCardsComponent } from './all-cards/all-cards.component';
   exports: [ CardSearchComponent, ],
 })
 export class CardsModule { }
+
+export {CardSearchComponent};

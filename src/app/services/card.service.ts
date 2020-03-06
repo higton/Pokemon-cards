@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { shareReplay, catchError, tap  } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
-import { Card } from '../models/Card';
 import { Set } from '../models/Set';
 
 @Injectable({
@@ -17,16 +17,20 @@ export class CardService {
   pageId:number
   numberOfPages:number
   
+  private messageSource = new BehaviorSubject('default message');
+  currentMessage = this.messageSource.asObservable();
+
   data$:Observable<any>;
   sets$:Observable<any>;
 
   constructor(
     private http:HttpClient,
-    ) {
-}
+    ) {}
 
-  ngOninit(){
+  ngOninit(){}
 
+  changeMessage(message: any) {
+    this.messageSource.next(message)
   }
 
   getPageId(route:any):number{

@@ -1,5 +1,6 @@
 import { Component, OnInit, Injectable, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ChildActivationStart } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { CardService } from '../../services/card.service';
 import { Card } from '../../models/Card';
@@ -11,13 +12,17 @@ import { Card } from '../../models/Card';
 })
 
 export class CardsComponent implements OnInit {
-  @Input() cards:Card[];
+  // TODO: instead of using cards:any, use cards:Card[]
+  @Input() cards:any;
 
   imageUrl:string;
   pageId:number; 
   totalNumberOfCards:number;
   numberOfPages:number;
+  message: any;
 
+  state$: Observable<any>;
+  
   constructor(
     private cardService:CardService,
     private route: ActivatedRoute,
@@ -25,24 +30,27 @@ export class CardsComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    this.cardService.currentMessage.subscribe(message => this.cards = message );
+    
+    console.log(window.history.state);
+
+    this.cards = this.getCardsFromState();
+
     this.pageId = +this.cardService.getPageId(this.route);
-    if(!this.cardService.isCardSearched){
-      this.pageId = +this.cardService.getPageId(this.route);
-      this.cardService.pageId = this.pageId
 
-      this.cardService.codeFromSet = this.getCode();
-
-      this.subscribeToPageId(this.pageId, this.cardService.codeFromSet);
-    }
+    this.cardService.codeFromSet = this.getCodeFromState();
+    
+    this.subscribeToPageId(this.pageId, this.cardService.codeFromSet);
+    
   }
 
-  getCode(){
-    let code:string
+  getCardsFromState(){
+    return window.history.state.cards;
+  }
 
-    this.route.parent.params.subscribe( (params) => {
-      code = params['code'];
-    });
-    return code
+  getCodeFromState(){
+    console.log(window.history.state.code)
+    return window.history.state.code;
   }
 
   subscribeToPageId(pageId:number, code:string){
@@ -59,7 +67,7 @@ export class CardsComponent implements OnInit {
       });
     }
     // REFACTOR THISS!!!
-    // IF the function was called by all cards component
+    // IF the function was called by allCardsComponent
     if(code === undefined && pageId !== null){
       console.log('outpost')
 
@@ -81,10 +89,6 @@ export class CardsComponent implements OnInit {
 
   counter(i: number) {
     return new Array(i);
-  }
-
-  returnNumberOfPages(){
-    return this.numberOfPages;
   }
 
   //PURE
