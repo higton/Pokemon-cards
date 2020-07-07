@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { fromEvent, of } from 'rxjs';
+import { filter, map, mergeMap, switchMap, concatMap } from 'rxjs/operators';
+
 import { CardService } from '../../services/card.service';
 
 @Component({
@@ -13,6 +16,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  }
 
+
+    const switched = of(2, 2, 3).pipe(switchMap((x: number) => of(x, x ** 2, x ** 3)));
+    switched.subscribe(x => console.log(x));
+  }
 }

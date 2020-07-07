@@ -21,7 +21,7 @@ export class SetsComponent implements OnInit {
 
   sendGetRequest(){
     this.cardService.getSets().subscribe(data => {
-      this.sets = data.sets;
+      this.sets = data.sets.reverse();
       console.log(data);
     });
   }

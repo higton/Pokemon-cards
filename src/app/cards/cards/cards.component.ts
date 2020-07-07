@@ -24,7 +24,7 @@ export class CardsComponent implements OnInit {
   state$: Observable<any>;
   
   constructor(
-    private cardService:CardService,
+    public cardService:CardService,
     private route: ActivatedRoute,
     private router: Router,
     ) {}
@@ -38,7 +38,7 @@ export class CardsComponent implements OnInit {
 
     this.pageId = +this.cardService.getPageId(this.route);
 
-    this.cardService.codeFromSet = this.getCodeFromState();
+    this.cardService.codeFromSet = this.getCode();
     
     this.subscribeToPageId(this.pageId, this.cardService.codeFromSet);
     
@@ -48,10 +48,15 @@ export class CardsComponent implements OnInit {
     return window.history.state.cards;
   }
 
-  getCodeFromState(){
-    console.log(window.history.state.code)
-    return window.history.state.code;
+  getCode(){
+    let code:string
+
+    this.route.parent.params.subscribe( (params) => {
+      code = params['code'];
+    });
+    return code
   }
+
 
   subscribeToPageId(pageId:number, code:string){
     console.log('code ' + code + ' number ' + pageId)
@@ -68,7 +73,7 @@ export class CardsComponent implements OnInit {
     }
     // REFACTOR THISS!!!
     // IF the function was called by allCardsComponent
-    if(code === undefined && pageId !== null){
+    if(code === undefined && pageId !== null && pageId !== 0){
       console.log('outpost')
 
       this.numberOfPages = 122

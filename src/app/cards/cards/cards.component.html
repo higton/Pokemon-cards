@@ -1,6 +1,11 @@
 <router-outlet  #myOutlet="outlet"></router-outlet>
+
 <div *ngIf="!myOutlet.isActivated">
         
+    <div class="container__card-search" *ngIf="cardService.isCardSearched">
+        <app-card-search></app-card-search>
+    </div>
+
     <app-pagination *ngIf="cards !== undefined"></app-pagination>
 
     <img [src]="imageUrl">

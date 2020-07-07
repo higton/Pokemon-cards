@@ -1,7 +1,9 @@
 <nav aria-label="Page navigation example">
-  <ul class="pagination">
+  <ul class="pagination" *ngIf="0 !== cardService.getPageId(route)">
     <li class="page-item">
-      <a class="page-link" *ngIf="1 !== cardService.getPageId(route)" (click)="cards.navigateToPage(cardService.getPageId(route) - 1)">Previous</a>
+      <a class="page-link" *ngIf="1 !== cardService.getPageId(route)" (click)="cards.navigateToPage(cardService.getPageId(route) - 1)">
+        Previous
+      </a>
     </li>
     <!-- the two pagination links from page before the actual -->
     <li class="page-item" *ngFor="let in of counter(2) ;let i = index">
@@ -20,13 +22,13 @@
 
     <!-- the additional pagination links if is on page 1 or 2 -->
     <li class="page-item" *ngFor="let in of counter(2) ;let i = index">
-      <a class="page-link" *ngIf="(cardService.getPageId(route) + (i - 2) ) < 0" (click)="cards.navigateToPage(cardService.getPageId(route) + (i + 2))">
+      <a class="page-link" *ngIf="(cardService.getPageId(route) + (i - 2) ) < 0" (click)="cards.navigateToPage(cardService.getPageId(route) + (i + 3))">
         {{  cardService.getPageId(route) + (i + 3) }}
       </a>
     </li>
 
     <li class="page-item">
-      <a class="page-link" (click)="cards.navigateToPage(cardService.getPageId(route) + 1)">
+      <a class="page-link" *ngIf="cards.numberOfPages !== cardService.getPageId(route)" (click)="cards.navigateToPage(cardService.getPageId(route) + 1)">
         Next
       </a>
     </li>

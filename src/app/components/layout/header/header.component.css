@@ -24,6 +24,7 @@ img:hover{
 app-card-search{
     position: absolute;
     right: 40px;
+    width: 20%;
 }
 
 .form-control{

@@ -27,3 +27,16 @@ div.background-image{
   align-items: center;
   width: 100%;
 }
+
+h6{
+  font-size: 13px;
+  opacity: 0.5;
+}
+
+h4{
+  font-weight: 600;
+}
+
+app-card-search{
+  width: 60vw;
+}

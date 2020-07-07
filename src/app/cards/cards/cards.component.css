@@ -1,3 +1,6 @@
+.container__card-search{
+    padding: 1rem;
+}
 
 div.cards{
     display: grid;
