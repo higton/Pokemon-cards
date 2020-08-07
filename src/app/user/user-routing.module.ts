@@ -1,25 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+import { CardDetailComponent } from '../cards/card-detail/card-detail.component'
+import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserComponent } from './user/user.component';
 import { ManageCardsComponent } from './manage-cards/manage-cards.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { AuthGuard } from '../auth/auth.guard';
+import { ChangeProfilePictureComponent } from './change-profile-picture/change-profile-picture.component';
+import { authActivate } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'user',
-    component: UserComponent,
-    canActivate: [AuthGuard],
+    path: 'profile',
+    component: UserDashboardComponent,
+    canActivate: [authActivate],
     children: [
       {
         path: '',
         children: [
-          { path: 'cards', component: ManageCardsComponent },
-          { path: '', component: UserDashboardComponent}
+          { path: 'card/:id', component: CardDetailComponent },
         ]
       }
     ]
-  }
+  },
+  {path: 'editProfile', component: EditUserComponent},
+  {path: 'changeProfilePicture', component: ChangeProfilePictureComponent}
 ];
 
 @NgModule({

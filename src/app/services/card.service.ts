@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { shareReplay, catchError, tap  } from 'rxjs/operators';
-import { BehaviorSubject, fromEvent } from 'rxjs';
+import { BehaviorSubject, Subject, fromEvent } from 'rxjs';
 
 import { Set } from '../models/Set';
 
@@ -17,6 +17,7 @@ export class CardService {
   pageId:number
   numberOfPages:number
   
+  private subjectRemoveCard = new Subject<any>();
   private messageSource = new BehaviorSubject('default message');
   currentMessage = this.messageSource.asObservable();
 
@@ -86,5 +87,21 @@ export class CardService {
       return of([]);
     }
     return this.http.get<any>(`https://api.pokemontcg.io/v1/cards?name=${term}`)
+  }
+
+  getCardsUrl(name: String){
+    let tmp = name.split('-');
+    let set = tmp[0]; 
+    let id = tmp[1]; 
+
+    return `https://images.pokemontcg.io/${set}/${id}.png`;
+  }
+
+  sendRemoveCardClickEvent() {
+    this.subjectRemoveCard.next();
+  }
+
+  getClickEventRemoveCard(): Observable<any>{
+    return this.subjectRemoveCard.asObservable();
   }
 }

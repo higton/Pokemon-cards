@@ -1,4 +1,122 @@
-img{
-    width: 369px;
-    height: 510px;
+#card-detail-container{
+  padding: 10vh 0 8vh 0;
+}
+
+#image-container{
+  width: 40%;
+}
+
+#container-card-detail img{
+  width: 100%;
+  height: auto;
+}
+
+#container-card-detail{
+  margin: 0 400px;
+  display:flex;
+  flex-flow: row nowrap;
+}
+
+.button-row{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.card-detail-btn{
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  line-height: 24px;
+  text-transform: uppercase;
+  padding: 3px 16px;
+}
+
+@media(max-width: 1200px){
+  #container-card-detail{
+    margin: 0 50px;
+  }
+}
+
+#container-information{
+  width: 50%;
+  margin-left: 100px;
+}
+
+@media(max-width: 600px){
+  #container-card-detail{
+    flex-flow: column nowrap;
+    margin: 50px 0px;
+  }
+
+  #image-container{
+    width: 90%;
+    margin: 0 0 20px;
+  }
+
+  #container-information{
+    width: 90%;
+    margin: 0 20px;
+  }
+}
+
+#head{
+  margin-bottom: 24px;
+}
+
+.card-details-attack, #weakness-resistance{
+  padding: 20px 0;
+}
+
+#weakness-resistance{
+  text-align: center;
+}
+
+.energy{
+  display: block;
+  height: 25px;
+  width: 25px;
+  margin: 0 3px;
+  background-image: url("./ok123.png");
+}
+.energy.Grass {
+  background-position: -25px -50px;
+}
+
+.energy.Colorless {
+  background-position: -25px 0px;
+}
+
+.energy.Lightning {
+  background-position: -50px -50px;
+}
+
+.energy.Fairy {
+  background-position: -50px 0px;
+}
+
+.energy.Psychic {
+  background-position: -75px -25px;
+}
+
+.energy.Fighting {
+  background-position: -50px -25px;
+}
+
+.energy.Water {
+  background-position: -75px -50px;
+}
+
+.energy.Metal {
+  background-position: -75px 0px;
+}
+
+.energy.Fire {
+  background-position: 0px 0px;
+}
+
+.energy.Darkness {
+  background-position: 0px -50px;
 }

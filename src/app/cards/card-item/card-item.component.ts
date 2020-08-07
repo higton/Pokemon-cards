@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { Card } from 'src/app/models/Card';
@@ -16,6 +16,7 @@ export class CardItemComponent implements OnInit {
   cards$: Observable<Card[]>;
   
   selectedCardId: string;
+  private deletedCard = new Subject<string>();
 
   constructor(
     private router: Router,
@@ -24,6 +25,8 @@ export class CardItemComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+        console.log('card', this.card);
+
     this.scrollToSelectedElement();
 
     this.selectedCardId = this.getCardId();
@@ -40,10 +43,11 @@ export class CardItemComponent implements OnInit {
   
   scrollToSelectedElement(){
     const element = document.querySelector("#true")
-    if (element) element.scrollIntoView({ block: 'center', inline: "nearest" })
+    if (element) element.scrollIntoView({ block: 'end', inline: "nearest" })
   }
   
   goToDetails(){
+    console.log(this.card.id);
     this.router.navigate(['./card/', this.card.id], {relativeTo: this.route});
   }
 

@@ -1,3 +1,7 @@
+#cards-container{
+    min-height: 31vh;
+}
+
 .container__card-search{
     padding: 1rem;
 }

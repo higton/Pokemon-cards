@@ -1,1 +1,58 @@
-<p>user-dashboard works!</p>
+<div id="profile-dashboard">
+
+	<div id="profile-container" class="in-line">
+		<div class="profile-image" [ngStyle]="setMyStyles()">
+		</div>
+		<div id="profile-information" class="in-column">
+			<div id="profile-information_username">
+				<span *ngIf="authService.user">{{authService.user.username}}</span>
+			</div>
+			<div id="profile-information_number-of-cards">
+				<span>Collected cards: <span *ngIf="cards">{{cards.length}}</span> </span>
+			</div>
+			<div id="profile-information_edit-profile">
+				<button (click)="gotToEditUser()">Edit profile </button>
+			</div>
+		</div>
+	</div>
+
+	<div id="info-container">
+		<div id="search-for-more-cards" class="in-column">
+			<div id="search-for-more-cards_icon">
+				<img>
+			</div>
+			<div id="search-for-more-cards_title" class="banner-title">
+				<span>Search for more cards</span>
+			</div>
+			<div id="search-for-more-cards_info" class="banner-info">
+				<span>Search for a specific card and add to your collection</span>
+			</div>
+			<div id="search-for-more-cards_link" class="banner-link">
+				<span>
+					<button>Search</button>
+				</span>
+			</div>
+		</div>
+	
+		<div id="add-more-cards" class="in-column">
+			<div>
+				<img>
+			</div>
+			<div class="banner-title">
+				<span>Add more cards</span>
+			</div>
+			<div class="banner-info">
+				<span>Add cards to your collection</span>
+			</div>
+			<div class="banner-link">
+				<span>
+					<button>Add</button>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<app-cards [cards]="cards"></app-cards>
+
+<img url="https://images.pokemontcg.io/xy7/4.png">

@@ -1,4 +1,4 @@
-<p>user works!</p>
+<span *ngIf="authService.user">{{authService.user.username}}</span>
 <nav>
   <a routerLink="./" routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: true}">Dashboard</a>

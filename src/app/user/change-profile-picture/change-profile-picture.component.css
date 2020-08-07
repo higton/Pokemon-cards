@@ -1,0 +1,107 @@
+/*.slider{
+	width: 300px;
+	height: 300px;
+	display: flex;
+	overflow-x: auto;
+}
+
+.slide{
+	width: 300px;
+	flex-shrink: 0;
+	height: 100%;
+	-webkit-overflow-scrolling: touch;
+	scroll-snap-type: x mandatory;
+}
+
+img{
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+
+#image1{
+	background-image: url('../../../assets/profile/red.png');
+}
+
+#image2{
+	background-image: url('../../../assets/profile/green.png');
+}
+
+#image3{
+	background-image: url('../../../assets/profile/elio.png');
+}
+
+#image4{
+	background-image: url('../../../assets/profile/selene.png');
+}*/
+
+
+#container{
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+}
+
+.slide-show{
+  overflow: hidden;
+}
+
+:root{
+  --selected-item: 0;
+  --total-items: 4;
+}
+.slides-list{
+  --total-items: 4;
+
+  list-style-type: none;
+  margin: 10px 0;
+  padding: 0;
+  position: relative;
+  left: calc(var(--selected-item) * -100%);
+  width: calc(var(--total-items) * 100%);
+  
+  display: flex;
+  flex-flow: row;
+}
+
+img{
+	height: 100%;
+	width: 100%;
+}
+
+.slide{
+  width: 100%;
+}
+
+.slide-button{
+	cursor: pointer;
+	display: inline-block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+
+	border: 0;
+}
+
+.slide-button:hover, .background-red{
+	background-color: red;
+}
+
+
+#button0{
+	background-image: url('../../../assets/profile/red-cut.png');
+}
+#button1{
+	background-image: url('../../../assets/profile/green-cut.png');
+}
+#button2{
+	background-image: url('../../../assets/profile/selene-cut.png');
+}
+#button3{
+	background-image: url('../../../assets/profile/elio-cut.png');
+}

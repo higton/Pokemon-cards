@@ -1,7 +1,7 @@
-<div>
+<div id="container">
 
   <router-outlet  #myOutlet="outlet"></router-outlet>
-
+  <app-loading *ngIf="sets === undefined"></app-loading>
   <div class="container_sets" *ngIf="!myOutlet.isActivated">
     <div class="sets" *ngIf="sets !== undefined">
       <app-set-item *ngFor="let set of sets; let i=index" [set]="set">

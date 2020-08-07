@@ -8,7 +8,11 @@ import { SetsComponent } from './sets/sets.component';
 import { AllCardsComponent } from './all-cards/all-cards.component';
 
 const cardsRoutes: Routes = [
-  { path: 'search', component: CardsComponent },
+  { path: 'search', component: CardsComponent,
+      children: [
+        { path: 'card/:id', component: CardDetailComponent }
+      ]
+  },
   { path: 'cards/page/:id', component: AllCardsComponent,
       children: [
         { path: 'card/:id', component: CardDetailComponent},

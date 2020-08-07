@@ -1,0 +1,6 @@
+.center{
+    position: relative;
+    left: 95vw;
+    top: 10vh;
+    transform: translate(-50%, -50%);
+  }

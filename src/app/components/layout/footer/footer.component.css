@@ -5,12 +5,8 @@
   bottom: 0px;
   width: 100%;
   background-color: #e9f6f6;
-  padding: 3rem 1.5rem 6rem;
-}
-
-.container {
-  margin: 0 auto;
-  position: relative;
+  padding: 3rem 1.5rem 1rem;
+  min-height: 20vh; /* line to hack the footer */
 }
 
 .has-text-centered {
@@ -18,7 +14,7 @@
 }
 
 svg{
-  height: 1em;
-  width: 1em;
+  height: 1.5em;
+  width: 1.5em;
   display: inline-block;
 }

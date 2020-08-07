@@ -1,0 +1,74 @@
+<!-- <p>change-profile-picture works!</p>
+<input
+	#input
+  required
+/>
+
+<div class="slide-wrap">
+	<button class="slider-button" onclick="currentDiv(1)">1</button>
+	<button class="slider-button" onclick="currentDiv(2)">2</button>
+	<button class="slider-button" onclick="currentDiv(3)">3</button>
+	<button class="slider-button" onclick="currentDiv(4)">4</button>
+
+	<div class="slider">
+		<div class="slide" id="slide-1">
+			<img src="../../../assets/profile/red.png">
+			1
+		</div>
+		<div class="slide" id="slide-2">
+			<img id="image2">
+			2
+		</div>
+		<div class="slide" id="slide-3">
+			<img id="image3">
+			3
+		</div>
+		<div class="slide" id="slide-4">
+			<img id="image4">
+			4
+		</div>
+	</div>
+
+</div>
+<div id="button-container">
+  <button 
+  	type="submit"
+  	(click)="changeProfile(input.value)"
+  	>Change</button>
+</div> -->
+<div id="container">
+	
+	<div class="slide-show" >
+	  <ul class="slides-list" >
+	    <li class="slide" >
+	      <img src="../../../assets/profile/red.png" />
+	    </li>
+	    <li class="slide" >
+	      <img src="../../../assets/profile/green.png" />
+	    </li>
+	    <li class="slide" >
+	      <img src="../../../assets/profile/selene.png" />
+	    </li>
+	    <li class="slide" >
+	      <img src="../../../assets/profile/elio.png" />
+	    </li>
+	  </ul>
+	</div>
+	<hr>
+
+	<div>
+		<button id="button0" (click)="selectSlide(0)" type="radio" class="slide-button" name="slide" checked >
+		</button>
+		<button id="button1" (click)="selectSlide(1)" type="radio" class="slide-button" name="slide" checked >
+		</button>
+		<button id="button2" (click)="selectSlide(2)" type="radio" class="slide-button" name="slide" checked >
+		</button>
+		<button id="button3" (click)="selectSlide(3)" type="radio" class="slide-button" name="slide" checked >
+		</button>
+	</div>
+	<hr>
+	<div id="choose-container">
+		<button  type="submit" (click)="submit()" class="btn btn-secondary btn-lg">Choose trainer</button>
+	</div>
+
+<div>

@@ -1,6 +1,6 @@
 <router-outlet  #myOutlet="outlet"></router-outlet>
 
-<div *ngIf="!myOutlet.isActivated">
+<div id="cards-container" *ngIf="!myOutlet.isActivated">
         
     <div class="container__card-search" *ngIf="cardService.isCardSearched">
         <app-card-search></app-card-search>
@@ -10,10 +10,8 @@
 
     <img [src]="imageUrl">
 
-    <div  *ngIf="cards === undefined" class="cards">
-        <app-card-item id="card-item" *ngFor="let in of counter(20) ;let i = index">
-        </app-card-item>
-    </div>
+    <app-loading *ngIf="cards === undefined"></app-loading>
+
     <div class="cards">
         <app-card-item id="card-item" *ngFor="let card of cards" [card]="card">
         </app-card-item>

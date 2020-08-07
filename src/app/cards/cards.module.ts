@@ -13,6 +13,8 @@ import { SetsComponent } from './sets/sets.component';
 import { SetItemComponent } from './set-item/set-item.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { AllCardsComponent } from './all-cards/all-cards.component';
+import { CardDetailAttackComponent } from './card-detail-attack/card-detail-attack.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AllCardsComponent } from './all-cards/all-cards.component';
     SetsComponent,
     SetItemComponent,
     PaginationComponent,
-    AllCardsComponent
+    AllCardsComponent,
+    CardDetailAttackComponent,
+    LoadingComponent
   ],
   imports: [
     FormsModule,
@@ -31,8 +35,8 @@ import { AllCardsComponent } from './all-cards/all-cards.component';
     CardsRoutingModule,
     NgbModule,
   ],
-  exports: [ CardSearchComponent, ],
+  exports: [ CardSearchComponent, CardsComponent, LoadingComponent ],
 })
 export class CardsModule { }
 
-export {CardSearchComponent};
+export {CardSearchComponent, CardsComponent, LoadingComponent};

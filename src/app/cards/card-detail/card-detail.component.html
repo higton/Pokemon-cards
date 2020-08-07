@@ -1,2 +1,112 @@
-<img [src]="card.imageUrl">
-<button (click)="goBackToCards()" >Go back</button>
+<div id="card-detail-container">
+    <app-loading *ngIf="card === undefined"></app-loading>
+    <div *ngIf="card !== undefined" id="container-card-detail">
+        {{displayPokemonTypeImage(card)}}
+        {{displayPokemonWeaknessImage(card)}}
+        {{displayPokemonRetreatCostImage(card)}}
+
+        <div id="image-container">
+            <img [src]="card.imageUrlHiRes">
+        </div>
+        <div id="container-information">
+            <nav class="in-line">
+                <div id="head-left" class="in-line">
+                    <div>Pokémon - {{card.subtype}}</div>
+                </div>
+            </nav>
+            <nav id="head" class="in-line">
+                <div id="head-left" class="in-line">
+                    <div>{{card.name}}</div>
+                </div>
+                <div id="head-right">
+                    <span class="in-line">
+                        , hp {{card.hp}}
+                        <span>
+                            <i id="pokemon-type"></i>
+                        </span>
+                    </span>
+                </div>
+            </nav>
+            <hr>
+            <div>
+            <!-- Display this part if the card's rule exist -->
+            <nav *ngIf="card.text">
+                <span class="title is-4">Rules</span>
+                <p>{{card.text[0]}}</p>
+            </nav>
+            <app-card-detail-attack *ngFor="let attack of card.attacks" [card]="card" [attack]="attack">
+            </app-card-detail-attack>
+            <nav class="level weakness-resistance">
+                <div class="level-item">
+                    <div class="weakness">
+                        <p class="heading">weaknesses</p>
+                        <p class="is-5">
+                            <span class="in-line">
+                                <span>
+                                    <i id="pokemon-weakness"></i>
+                                </span>
+                                 
+                                {{card.weaknesses[0].value}}
+                                <p *ngIf="card.weaknesses[0].value === ''">N/A</p> 
+
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="level-item">
+                    <div class="resistances">
+                        <p class="heading">resistances</p>
+                        <p class="is-5">N/A</p>
+                    </div>
+                </div>
+                <div class="level-item">
+                    <div class="weakness">
+                        <p class="heading">retreat cost</p>
+                        <p class="is-5">
+                            <span>
+                                <p *ngIf="card.retreatCost[0].length === 0">N/A</p>
+                                <span id="pokemon-retreat-cost" class="in-line">
+                                </span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </nav>
+            <nav class="level">
+                <div class="level-item">
+                    <div class="cards-details-artist">
+                        <p class="heading">artist</p>
+                        <p *ngIf="card.artist !== undefined">{{card.artist}}</p>
+                        <p *ngIf="card.artist?.length === 0">N/A</p> 
+                        <p *ngIf="card.artist === undefined">N/A</p>
+                    </div>
+                </div>
+                <div class="level-item">
+                    <div class="cards-details-rarity">
+                        <p class="heading">rarity</p>
+                        <p>{{card.rarity}}</p>
+                    </div>
+                </div>
+                <div class="level-item">
+                    <div class="cards-details-set">
+                        <p class="heading">set</p>
+                        <p>{{card.set}}</p>
+                    </div>
+                </div>
+            </nav>
+            <nav class="button-row">
+                <button class="btn btn-dark card-detail-btn" (click)="goBackToCards()">Go back</button>
+                <div>
+                  <button 
+                      class="btn btn-success card-detail-btn" 
+                      *ngIf="!isCardCollectedFromUser && server.isLoggedIn" 
+                      (click)="addCardToUser()">add card</button>
+                  <button 
+                      class="btn btn-danger card-detail-btn"
+                      *ngIf="isCardCollectedFromUser && server.isLoggedIn"
+                      (click)="removeCardFromUser()" >remove</button>
+                </div>
+            </nav>
+        </div>
+    </div>
+<div>
